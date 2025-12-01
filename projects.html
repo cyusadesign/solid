@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects - Solid Brick Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+/* --- Global Reset & Base Styles (Unified) --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+body { 
+    background-color: #f9fafb; /* Lightest Gray */
+    color: #111827; /* Dark text */
+    overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+.container { padding: 30px 50px; max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; font-size: 2.5rem; color: #1E3A8A; margin: 60px 0 30px; font-weight: 700; }
+
+/* --- Header & Navigation (Standardized and Fixed Spacing) --- */
+header { 
+    padding: 15px 0; 
+    background-color: #ffffff; 
+    border-bottom: 3px solid #1E3A8A; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
+}
+.header-inner {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 30px; 
+}
+header .logo { height: 60px; } 
+.logo-img { height: 60px; width: auto; display: block; } 
+
+nav ul { list-style: none; display: flex; gap: 25px; } 
+nav ul li a { 
+    font-weight: 500; 
+    color: #1E3A8A; 
+    transition: color 0.3s; 
+    padding: 5px 0;
+}
+nav ul li a:hover { color: #D97706; } 
+
+.cta-btn { 
+    background-color: #D97706; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    font-weight: 700; 
+    transition: background-color 0.3s; 
+} 
+.cta-btn:hover { background-color: #b46005; }
+
+/* --- Projects Page Specific Styles --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.project-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+.project-card img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+}
+.project-card h3 {
+    color: #1E3A8A;
+    font-size: 1.5rem;
+    padding: 15px 20px 5px;
+}
+.project-card p {
+    font-size: 0.95rem;
+    color: #4B5563;
+    padding: 0 20px 20px;
+}
+
+/* --- Footer Styles (Unified) --- */
+footer {
+    background-color: #111827; 
+    color: #D1D5DB;
+    padding: 40px 50px;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #374151;
+}
+.footer-col { flex: 1; min-width: 150px; }
+.footer-col h4 { color: #ffffff; font-size: 1.1rem; margin-bottom: 15px; font-weight: 700; }
+.footer-col p, .footer-col a { color: #9CA3AF; display: block; margin-bottom: 8px; transition: color 0.3s; }
+.footer-col a:hover { color: #D97706; }
+.footer-bottom { text-align: center; padding-top: 20px; color: #9CA3AF; }
+.social-links a { font-size: 1.5rem; margin-right: 15px; color: #D1D5DB; }
+
+/* --- Responsive Design (Unified) --- */
+.menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: #1E3A8A; cursor: pointer; z-index: 101; }
+#main-nav { transition: transform 0.3s ease-in-out; }
+
+@media(max-width: 768px) {
+    .container { padding: 20px; }
+    .header-inner { padding: 0 20px; }
+    .menu-toggle { display: block; }
+    
+    header nav {
+        position: fixed; top: 0; right: 0; width: 70%; height: 100%; background-color: #ffffff; box-shadow: -4px 0 10px rgba(0,0,0,0.2); z-index: 99; transform: translateX(100%); padding-top: 80px;
+    }
+    header nav.is-open { transform: translateX(0); }
+    header nav ul { flex-direction: column; gap: 0; padding: 0 20px; }
+    header nav ul li { width: 100%; border-bottom: 1px solid #eee; }
+    header nav ul li a { display: block; padding: 15px 0; font-size: 1.1rem; color: #111827; font-weight: 700; }
+    header nav ul li .cta-btn { background-color: transparent; color: #D97706; padding: 15px 0; font-weight: 700; border-radius: 0; }
+    
+    .footer-content { flex-direction: column; gap: 20px; }
+    footer { padding: 30px 20px; }
+    .section-title { margin: 40px 0 20px; font-size: 2rem; }
+    
+    .project-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+  
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Solid Brick Co Logo" class="logo-img">
+    </a>
+    
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false">☰</button>
+
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="business.html">Business Plan</a></li>
+        <li><a href="contact.html" class="cta-btn">Get a Quote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+    <h1 class="section-title">Featured Projects & Case Studies</h1>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; font-size: 1.1rem;">See how Solid Brick Co. products have been utilized in diverse construction and infrastructure projects across the region.</p>
+
+    <div class="project-grid">
+      
+      <div class="project-card">
+        <img src="img/download (1).jpeg" alt="Rwanda School Paving Project">
+        <h3>School Renovation Paving</h3>
+        <p>Successfully supplied and installed high-grade paving blocks for a major schoolyard and access road renovation project, ensuring safe, durable surfaces for students.</p>
+      </div>
+      
+      <div class="project-card">
+        <img src="img/download.jpeg" alt="Eastern Province Road">
+        <h3>Eastern Province Road Upgrade</h3>
+        <p>Installed high-quality curbstones along a major provincial road, providing essential road finishing and definition for safety and aesthetics.</p>
+      </div>
+      
+      <div class="project-card">
+        <img src="img/download (2).jpeg" alt="Kigali Commercial Building">
+        <h3>Kigali Commercial Construction</h3>
+        <p>Provided thousands of our heavy-duty solid bricks for the core structure of a new multi-story commercial building in the capital, chosen for stability and longevity.</p>
+      </div>
+    </div>
+  </div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Solid Brick Co.</h4>
+            <p>Building Rwanda's future, brick by brick. We supply durable, high-quality concrete products for all construction needs.</p>
+            <p style="margin-top: 15px;">&copy; 2025 Solid Brick Co.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products Catalog</a>
+            <a href="projects.html">Completed Projects</a>
+            <a href="business.html">Investor Relations</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <p>Email: cyuxjamess@gmail.com</p>
+            <p>Phone: +250 793 266 966</p>
+            <div class="social-links" style="margin-top: 15px;">
+                <a href="#" title="Facebook">📘</a> 
+                <a href="https://wa.me/250793266966?text=Hello,%20I%20saw%20your%20website%20and%20have%20a%20question." target="_blank">
+    Chat with us on WhatsApp
+</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        All rights reserved.&copy;cyusa.
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+
+    if (toggleButton && mainNav) {
+        toggleButton.addEventListener('click', function() {
+            mainNav.classList.toggle('is-open');
+            this.textContent = mainNav.classList.contains('is-open') ? '✕' : '☰'; 
+            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (!link.classList.contains('cta-btn')) {
+                    mainNav.classList.remove('is-open');
+                    toggleButton.textContent = '☰';
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+});
+</script>
+
+</body>
+</html>

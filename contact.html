@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Solid Brick Co</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+/* --- Global Reset & Base Styles --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+body { 
+    background-color: #f9fafb; /* Lightest Gray */
+    color: #111827; /* Dark text */
+    overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+.container { padding: 30px 50px; max-width: 1200px; margin: 0 auto; }
+.section-title { text-align: center; font-size: 2.5rem; color: #1E3A8A; margin: 60px 0 30px; font-weight: 700; }
+
+/* --- Header & Navigation (Standardized and Fixed Spacing) --- */
+header { 
+    padding: 15px 0; /* Vertical padding only */
+    background-color: #ffffff; 
+    border-bottom: 3px solid #1E3A8A; /* Primary Brand Color */
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
+}
+/* NEW: Inner container to control max width and apply main flex properties */
+.header-inner {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; /* Max content width */
+    margin: 0 auto; 
+    padding: 0 30px; /* Horizontal padding for spacing from edges */
+}
+header .logo { height: 60px; } 
+.logo-img { height: 60px; width: auto; display: block; } 
+
+nav ul { list-style: none; display: flex; gap: 25px; } 
+nav ul li a { 
+    font-weight: 500; 
+    color: #1E3A8A; /* Primary Brand Color */
+    transition: color 0.3s; 
+    padding: 5px 0;
+}
+nav ul li a:hover { color: #D97706; } /* Accent Color for hover */
+
+/* Standardized CTA Button Style */
+.cta-btn { 
+    background-color: #D97706; /* Accent Color */
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 6px; 
+    font-weight: 700; 
+    transition: background-color 0.3s; 
+} 
+.cta-btn:hover { background-color: #b46005; }
+
+/* --- Contact Page Specific Styles --- */
+.contact-grid {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+.contact-form-area { flex: 2; }
+.contact-info-area { 
+    flex: 1; 
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.contact-info-area h3 {
+    color: #1E3A8A;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+}
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.info-item p { margin-left: 10px; }
+.info-icon { color: #D97706; font-size: 1.2rem; }
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea { 
+    width: 100%; 
+    padding: 12px; 
+    margin-bottom: 20px; 
+    border: 1px solid #d1d5db; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    box-sizing: border-box; 
+    transition: border-color 0.3s;
+}
+#contact-form input:focus, #contact-form textarea:focus {
+    border-color: #1E3A8A;
+    outline: none;
+}
+#contact-form textarea { resize: vertical; }
+#contact-form .submit-btn { 
+    background-color: #1E3A8A; 
+    color: white; 
+    padding: 15px 30px; 
+    border: none; 
+    border-radius: 5px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+    width: 100%; 
+}
+#contact-form .submit-btn:hover { background-color: #102e70; }
+
+.message-box {
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: none;
+    font-weight: 700;
+}
+.message-box.success {
+    background-color: #D1FAE5; /* Light green */
+    color: #065F46; /* Dark green text */
+    border: 1px solid #A7F3D0;
+}
+.message-box.error {
+    background-color: #FEE2E2; /* Light red */
+    color: #991B1B; /* Dark red text */
+    border: 1px solid #FCA5A5;
+}
+
+/* --- Footer Styles --- */
+footer {
+    background-color: #111827; /* Darker than body for contrast */
+    color: #D1D5DB;
+    padding: 40px 50px;
+    margin-top: 60px;
+    font-size: 0.9rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #374151;
+}
+.footer-col {
+    flex: 1;
+    min-width: 150px;
+}
+.footer-col h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.footer-col p, .footer-col a {
+    color: #9CA3AF;
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+.footer-col a:hover {
+    color: #D97706; /* Accent Color hover */
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    color: #9CA3AF;
+}
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #D1D5DB;
+}
+
+/* --- Responsive Design --- */
+.menu-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #1E3A8A;
+    cursor: pointer;
+    z-index: 101; 
+}
+#main-nav {
+    transition: transform 0.3s ease-in-out;
+}
+
+@media(max-width: 768px) {
+    /* General Mobile Padding */
+    .container { padding: 20px; }
+    .header-inner { padding: 0 20px; }
+    
+    /* Header/Nav Overrides for Mobile */
+    .menu-toggle { display: block; }
+    
+    header nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%; 
+        height: 100%;
+        background-color: #ffffff;
+        box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+        z-index: 99;
+        transform: translateX(100%); 
+        padding-top: 80px;
+    }
+    
+    header nav.is-open { transform: translateX(0); }
+    
+    header nav ul {
+        flex-direction: column; 
+        gap: 0;
+        padding: 0 20px;
+    }
+    
+    header nav ul li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+    
+    header nav ul li a {
+        display: block;
+        padding: 15px 0;
+        font-size: 1.1rem;
+        color: #111827;
+        font-weight: 700;
+    }
+
+    header nav ul li .cta-btn { 
+        background-color: transparent; 
+        color: #D97706; 
+        padding: 15px 0; 
+        font-weight: 700;
+        border-radius: 0;
+    }
+    
+    .footer-content { flex-direction: column; gap: 20px; }
+    footer { padding: 30px 20px; }
+    .section-title { margin: 40px 0 20px; font-size: 2rem; }
+    
+    /* Contact Specific Mobile Fix */
+    .contact-grid { flex-direction: column; gap: 30px; }
+}
+</style>
+</head>
+<body>
+  
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="img/logo.png" alt="Solid Brick Co Logo" class="logo-img">
+    </a>
+    
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false">☰</button>
+
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="business.html">Business Plan</a></li>
+        <li><a href="contact.html" class="cta-btn">Get a Quote</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+    <h1 class="section-title">Get in Touch with Solid Brick Co.</h1>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Whether you're planning a massive project or need materials for a home renovation, our team is ready to provide quality products and reliable service.</p>
+    
+    <div class="contact-grid">
+        <div class="contact-form-area">
+            <h3>Send us a Message</h3>
+            <form id="contact-form" action="https://formspree.io/f/xjkjbylb" method="POST"> 
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="_replyto" placeholder="Your Email Address" required>
+                <input type="text" name="subject" placeholder="Subject or Project Type (e.g., Paving, New Build)" required>
+                <textarea name="message" rows="6" placeholder="Your Message / Project Details" required></textarea>
+                <div id="form-message" class="message-box"></div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-info-area">
+            <h3>Contact Information</h3>
+            <div class="info-item">
+                <span class="info-icon">📍</span><p>Kigali, Eastern Province, Rwanda</p>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📧</span><p>Email: cyuxjamess@gmail.com</p>
+            </div>
+            <div class="info-item">
+                <span class="info-icon">📞</span><p>Phone: +250 793 266 966</p>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Business Hours</h3>
+            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+            <p>Saturday: 8:00 AM - 1:00 PM</p>
+            <p>Sunday: Closed</p>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h4>Solid Brick Co.</h4>
+            <p>Building Rwanda's future, brick by brick. We supply durable, high-quality concrete products for all construction needs.</p>
+            <p style="margin-top: 15px;">&copy; 2025 Solid Brick Co.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products Catalog</a>
+            <a href="projects.html">Completed Projects</a>
+            <a href="business.html">Investor Relations</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Us</h4>
+            <p>Email: cyuxjamess@gmail.com</p>
+            <p>Phone: +250 793 266 966</p>
+            <div class="social-links" style="margin-top: 15px;">
+                <a href="#" title="Facebook">📘</a> 
+                <a href="https://wa.me/250793266966?text=Hello,%20I%20saw%20your%20website%20and%20have%20a%20question." target="_blank">
+    Chat with us on WhatsApp
+</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        All rights reserved.&copy;cyusa.
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    
+    if (toggleButton && mainNav) {
+        toggleButton.addEventListener('click', function() {
+            mainNav.classList.toggle('is-open');
+            // Toggle the icon between hamburger and close
+            this.textContent = mainNav.classList.contains('is-open') ? '✕' : '☰'; 
+            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close the menu when a link is clicked
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Ensure we don't close if they click the CTA button inside the menu (which navigates away anyway)
+                if (!link.classList.contains('cta-btn')) {
+                    mainNav.classList.remove('is-open');
+                    toggleButton.textContent = '☰';
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+    }
+
+    // Form submission script (re-used and slightly improved)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const messageBox = document.getElementById('form-message');
+            const form = event.target;
+            const submitButton = form.querySelector('.submit-btn');
+
+            // Reset UI state
+            messageBox.style.display = 'none';
+            messageBox.className = 'message-box';
+            messageBox.textContent = '';
+            
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            // Send the form data to the Formspree API
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // SUCCESS
+                    messageBox.classList.add('success');
+                    messageBox.textContent = 'Thank you for your message! We have received your query and will be in touch shortly.';
+                    form.reset();
+                } else {
+                    // FAILURE
+                    const data = await response.json();
+                    const errorMessage = data.error || 'Oops! An error occurred while sending your message. Please try again.';
+                    messageBox.classList.add('error');
+                    messageBox.textContent = errorMessage;
+                }
+            } catch (error) {
+                messageBox.classList.add('error');
+                messageBox.textContent = 'A network error occurred. Please check your internet connection.';
+            }
+            
+            // Display result and re-enable button
+            messageBox.style.display = 'block';
+            submitButton.textContent = 'Send Message';
+            submitButton.disabled = false;
+        });
+    }
+});
+</script>
+
+</body>
+</html>
